@@ -1,3 +1,6 @@
 <resources>
     <string name="app_name">Amphibians</string>
+    <string name="loading_failed">No se pudieron cargar los datos</string>
+    <string name="retry">Reintentar</string>
+    <string name="amphibian_title">%1$s (%2$s)</string>
 </resources>
