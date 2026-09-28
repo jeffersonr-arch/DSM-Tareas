@@ -1,3 +1,8 @@
 <resources>
     <string name="app_name">BusinessCard</string>
+    <string name="full_name">Juan Perez</string>
+    <string name="title">Ingeniero de Software</string>
+    <string name="phone">999 888 777</string>
+    <string name="social_handle">\@juanperez_archi</string>
+    <string name="email">societyunpopular@unmsm.edu.pe</string>
 </resources>
