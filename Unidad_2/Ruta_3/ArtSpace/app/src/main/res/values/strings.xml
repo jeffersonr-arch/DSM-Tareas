@@ -1,0 +1,17 @@
+<resources>
+    <string name="app_name">ArtSpace</string>
+    <string name="artwork_1_title">Rocko</string>
+    <string name="artwork_1_artist">Diego</string>
+    <string name="artwork_1_year">2025</string>
+
+    <string name="artwork_2_title">Tobby</string>
+    <string name="artwork_2_artist">Diego</string>
+    <string name="artwork_2_year">2026</string>
+
+    <string name="artwork_3_title">Arthur y Tobby</string>
+    <string name="artwork_3_artist">Diego</string>
+    <string name="artwork_3_year">2026</string>
+
+    <string name="previous">Previous</string>
+    <string name="next">Next</string>
+</resources>
