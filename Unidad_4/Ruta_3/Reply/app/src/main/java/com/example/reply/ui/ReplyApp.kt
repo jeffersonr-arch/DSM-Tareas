@@ -49,6 +49,7 @@ fun ReplyApp(
     }
 
     ReplyHomeScreen(
+        navigationType = navigationType,
         replyUiState = replyUiState,
         onTabPressed = { mailboxType: MailboxType ->
             viewModel.updateCurrentMailbox(mailboxType = mailboxType)
