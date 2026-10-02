@@ -1,3 +1,54 @@
 <resources>
-    <string name="app_name">MyCity</string>
+    <string name="app_name">Lima en Ruta</string>
+    <string name="back_button">Atrás</string>
+
+    <!-- Categorías -->
+    <string name="category_restaurants">Restaurantes</string>
+    <string name="category_restaurants_desc">Lo mejor de la gastronomía limeña</string>
+    <string name="category_parks">Parques</string>
+    <string name="category_parks_desc">Áreas verdes y miradores para pasear</string>
+    <string name="category_history">Centro histórico</string>
+    <string name="category_history_desc">Plazas, museos y sitios arqueológicos</string>
+
+    <!-- Restaurantes -->
+    <string name="place_central_name">Central</string>
+    <string name="place_central_district">Barranco</string>
+    <string name="place_central_desc">Cocina de autor del chef Virgilio Martínez, con ingredientes de distintas alturas del Perú.</string>
+    <string name="place_maido_name">Maido</string>
+    <string name="place_maido_district">Miraflores</string>
+    <string name="place_maido_desc">Cocina nikkei, fusión peruano-japonesa, del chef Mitsuharu Tsumura.</string>
+    <string name="place_la_mar_name">La Mar</string>
+    <string name="place_la_mar_district">Miraflores</string>
+    <string name="place_la_mar_desc">Cevichería de Gastón Acurio especializada en pescados y mariscos.</string>
+    <string name="place_isolina_name">Isolina</string>
+    <string name="place_isolina_district">Barranco</string>
+    <string name="place_isolina_desc">Taberna de comida criolla casera en porciones para compartir.</string>
+
+    <!-- Parques -->
+    <string name="place_kennedy_name">Parque Kennedy</string>
+    <string name="place_kennedy_district">Miraflores</string>
+    <string name="place_kennedy_desc">Parque céntrico conocido por sus gatos, rodeado de cafés y restaurantes.</string>
+    <string name="place_amor_name">Parque del Amor</string>
+    <string name="place_amor_district">Miraflores</string>
+    <string name="place_amor_desc">Mirador en el malecón frente al mar, famoso por su escultura \"El Beso\".</string>
+    <string name="place_circuito_name">Circuito Mágico del Agua</string>
+    <string name="place_circuito_district">Cercado de Lima</string>
+    <string name="place_circuito_desc">Fuentes con espectáculo nocturno de luces y música en el Parque de la Reserva.</string>
+    <string name="place_olivar_name">El Olivar</string>
+    <string name="place_olivar_district">San Isidro</string>
+    <string name="place_olivar_desc">Bosque de olivos centenarios, ideal para caminar con tranquilidad.</string>
+
+    <!-- Centro histórico -->
+    <string name="place_plaza_name">Plaza Mayor</string>
+    <string name="place_plaza_district">Cercado de Lima</string>
+    <string name="place_plaza_desc">Corazón de la ciudad, con la Catedral, el Palacio de Gobierno y la Municipalidad.</string>
+    <string name="place_san_francisco_name">Convento de San Francisco</string>
+    <string name="place_san_francisco_district">Cercado de Lima</string>
+    <string name="place_san_francisco_desc">Iglesia colonial famosa por sus catacumbas y su biblioteca antigua.</string>
+    <string name="place_larco_name">Museo Larco</string>
+    <string name="place_larco_district">Pueblo Libre</string>
+    <string name="place_larco_desc">Museo de arte precolombino en una casona virreinal con jardines.</string>
+    <string name="place_pucllana_name">Huaca Pucllana</string>
+    <string name="place_pucllana_district">Miraflores</string>
+    <string name="place_pucllana_desc">Pirámide de adobe preinca en medio de la ciudad, con visitas guiadas.</string>
 </resources>
