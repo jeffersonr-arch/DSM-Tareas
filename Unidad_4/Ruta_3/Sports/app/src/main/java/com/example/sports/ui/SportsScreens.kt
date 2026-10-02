@@ -62,6 +62,7 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.pluralStringResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextOverflow
+import androidx.compose.ui.tooling.preview.Devices
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.viewmodel.compose.viewModel
@@ -130,11 +131,11 @@ fun SportsAppBar(
         title = {
             Text(
                 text =
-                if (!isShowingListPage) {
-                    stringResource(R.string.detail_fragment_label)
-                } else {
-                    stringResource(R.string.list_fragment_label)
-                }
+                    if (!isShowingListPage) {
+                        stringResource(R.string.detail_fragment_label)
+                    } else {
+                        stringResource(R.string.list_fragment_label)
+                    }
             )
         },
         navigationIcon = if (!isShowingListPage) {
@@ -342,6 +343,39 @@ private fun SportsDetail(
     }
 }
 
+@Composable
+private fun SportsListAndDetail(
+    sports: List<Sport>,
+    selectedSport: Sport,
+    onClick: (Sport) -> Unit,
+    onBackPressed: () -> Unit,
+    modifier: Modifier = Modifier,
+    contentPadding: PaddingValues = PaddingValues(0.dp),
+) {
+    Row(
+        modifier = modifier
+    ) {
+        SportsList(
+            sports = sports,
+            onClick = onClick,
+            contentPadding = PaddingValues(
+                top = contentPadding.calculateTopPadding(),
+            ),
+            modifier = Modifier
+                .weight(2f)
+                .padding(horizontal = dimensionResource(R.dimen.padding_medium))
+        )
+        SportsDetail(
+            selectedSport = selectedSport,
+            modifier = Modifier.weight(3f),
+            contentPadding = PaddingValues(
+                top = contentPadding.calculateTopPadding(),
+            ),
+            onBackPressed = onBackPressed,
+        )
+    }
+}
+
 @Preview
 @Composable
 fun SportsListItemPreview() {
@@ -361,6 +395,23 @@ fun SportsListPreview() {
             SportsList(
                 sports = LocalSportsDataProvider.getSportsData(),
                 onClick = {},
+            )
+        }
+    }
+}
+
+@Preview(device = Devices.TABLET)
+@Composable
+fun SportsListAndDetailsPreview() {
+    SportsTheme {
+        Surface {
+            SportsListAndDetail(
+                sports = LocalSportsDataProvider.getSportsData(),
+                selectedSport = LocalSportsDataProvider.getSportsData().getOrElse(0) {
+                    LocalSportsDataProvider.defaultSport
+                },
+                onClick = {},
+                onBackPressed = {},
             )
         }
     }
