@@ -12,16 +12,16 @@ enum class Category(
     Restaurants(
         titleRes = R.string.category_restaurants,
         descriptionRes = R.string.category_restaurants_desc,
-        imageRes = R.drawable.ic_launcher_foreground
+        imageRes = R.drawable.rest_central
     ),
     Parks(
         titleRes = R.string.category_parks,
         descriptionRes = R.string.category_parks_desc,
-        imageRes = R.drawable.ic_launcher_foreground
+        imageRes = R.drawable.park_kennedy
     ),
     History(
         titleRes = R.string.category_history,
         descriptionRes = R.string.category_history_desc,
-        imageRes = R.drawable.ic_launcher_foreground
+        imageRes = R.drawable.hist_plaza
     )
 }
