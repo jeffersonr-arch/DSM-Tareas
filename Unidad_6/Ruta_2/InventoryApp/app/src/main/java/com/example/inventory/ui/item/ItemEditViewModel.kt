@@ -52,6 +52,17 @@ class ItemEditViewModel(
         }
     }
 
+    suspend fun updateItem() {
+        if (validateInput(itemUiState.itemDetails)) {
+            itemsRepository.updateItem(itemUiState.itemDetails.toItem())
+        }
+    }
+
+    fun updateUiState(itemDetails: ItemDetails) {
+        itemUiState =
+            ItemUiState(itemDetails = itemDetails, isEntryValid = validateInput(itemDetails))
+    }
+
     private fun validateInput(uiState: ItemDetails = itemUiState.itemDetails): Boolean {
         return with(uiState) {
             name.isNotBlank() && price.isNotBlank() && quantity.isNotBlank()
