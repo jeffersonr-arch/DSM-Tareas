@@ -78,8 +78,18 @@ fun FlightSearchApp(
                     .fillMaxWidth()
                     .padding(16.dp)
             )
-            if (!uiState.showFavorites && uiState.selectedAirport == null) {
-                SuggestionList(
+            val selectedAirport = uiState.selectedAirport
+            when {
+                selectedAirport != null -> FlightList(
+                    departure = selectedAirport,
+                    destinations = uiState.destinations,
+                    favorites = uiState.favorites,
+                    onFavoriteClick = { destination ->
+                        viewModel.onFavoriteClick(selectedAirport.iataCode, destination.iataCode)
+                    }
+                )
+                uiState.showFavorites -> { /* favoritos: siguiente paso */ }
+                else -> SuggestionList(
                     suggestions = uiState.suggestions,
                     onSuggestionClick = viewModel::onAirportSelected
                 )
@@ -138,6 +148,43 @@ fun SuggestionList(
         }
     }
 }
+@Composable
+fun FlightList(
+    departure: Airport,
+    destinations: List<Airport>,
+    favorites: List<Favorite>,
+    onFavoriteClick: (Airport) -> Unit,
+    modifier: Modifier = Modifier
+) {
+    Column(modifier = modifier) {
+        Text(
+            text = stringResource(R.string.flights_from, departure.iataCode),
+            style = MaterialTheme.typography.titleMedium,
+            fontWeight = FontWeight.Bold,
+            modifier = Modifier.padding(horizontal = 16.dp)
+        )
+        LazyColumn(
+            contentPadding = PaddingValues(16.dp),
+            verticalArrangement = Arrangement.spacedBy(8.dp)
+        ) {
+            items(destinations, key = { it.id }) { destination ->
+                val isFavorite = favorites.any {
+                    it.departureCode == departure.iataCode &&
+                            it.destinationCode == destination.iataCode
+                }
+                RouteCard(
+                    departureCode = departure.iataCode,
+                    departureName = departure.name,
+                    destinationCode = destination.iataCode,
+                    destinationName = destination.name,
+                    isFavorite = isFavorite,
+                    onFavoriteClick = { onFavoriteClick(destination) }
+                )
+            }
+        }
+    }
+}
+
 
 @Composable
 fun AirportLine(
@@ -158,5 +205,61 @@ fun AirportLine(
         if (name != null) {
             Text(text = name, style = MaterialTheme.typography.bodyMedium)
         }
+    }
+}
+
+@Composable
+fun RouteCard(
+    departureCode: String,
+    departureName: String?,
+    destinationCode: String,
+    destinationName: String?,
+    isFavorite: Boolean,
+    onFavoriteClick: () -> Unit,
+    modifier: Modifier = Modifier
+) {
+    Card(modifier = modifier.fillMaxWidth()) {
+        Row(
+            modifier = Modifier.padding(16.dp),
+            verticalAlignment = Alignment.CenterVertically
+        ) {
+            Column(modifier = Modifier.weight(1f)) {
+                Text(
+                    text = stringResource(R.string.depart),
+                    style = MaterialTheme.typography.labelSmall
+                )
+                AirportLine(code = departureCode, name = departureName)
+                Spacer(modifier = Modifier.height(8.dp))
+                Text(
+                    text = stringResource(R.string.arrive),
+                    style = MaterialTheme.typography.labelSmall
+                )
+                AirportLine(code = destinationCode, name = destinationName)
+            }
+            IconButton(onClick = onFavoriteClick) {
+                Icon(
+                    imageVector = Icons.Filled.Star,
+                    contentDescription = stringResource(
+                        if (isFavorite) R.string.remove_favorite else R.string.add_favorite
+                    ),
+                    tint = if (isFavorite) Color(0xFFFFB300) else MaterialTheme.colorScheme.outlineVariant
+                )
+            }
+        }
+    }
+}
+
+@Preview(showBackground = true)
+@Composable
+fun RouteCardPreview() {
+    FlightSearchTheme {
+        RouteCard(
+            departureCode = "MUC",
+            departureName = "Munich International Airport",
+            destinationCode = "LIS",
+            destinationName = "Humberto Delgado Airport",
+            isFavorite = true,
+            onFavoriteClick = {}
+        )
     }
 }
