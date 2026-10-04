@@ -88,7 +88,12 @@ fun FlightSearchApp(
                         viewModel.onFavoriteClick(selectedAirport.iataCode, destination.iataCode)
                     }
                 )
-                uiState.showFavorites -> { /* favoritos: siguiente paso */ }
+                uiState.showFavorites -> FavoriteList(
+                    favorites = uiState.favorites,
+                    onFavoriteClick = { favorite ->
+                        viewModel.onFavoriteClick(favorite.departureCode, favorite.destinationCode)
+                    }
+                )
                 else -> SuggestionList(
                     suggestions = uiState.suggestions,
                     onSuggestionClick = viewModel::onAirportSelected
@@ -180,6 +185,45 @@ fun FlightList(
                     isFavorite = isFavorite,
                     onFavoriteClick = { onFavoriteClick(destination) }
                 )
+            }
+        }
+    }
+}
+
+@Composable
+fun FavoriteList(
+    favorites: List<Favorite>,
+    onFavoriteClick: (Favorite) -> Unit,
+    modifier: Modifier = Modifier
+) {
+    if (favorites.isEmpty()) {
+        Text(
+            text = stringResource(R.string.no_favorites),
+            style = MaterialTheme.typography.bodyLarge,
+            modifier = modifier.padding(16.dp)
+        )
+    } else {
+        Column(modifier = modifier) {
+            Text(
+                text = stringResource(R.string.favorite_routes),
+                style = MaterialTheme.typography.titleMedium,
+                fontWeight = FontWeight.Bold,
+                modifier = Modifier.padding(horizontal = 16.dp)
+            )
+            LazyColumn(
+                contentPadding = PaddingValues(16.dp),
+                verticalArrangement = Arrangement.spacedBy(8.dp)
+            ) {
+                items(favorites, key = { it.id }) { favorite ->
+                    RouteCard(
+                        departureCode = favorite.departureCode,
+                        departureName = null,
+                        destinationCode = favorite.destinationCode,
+                        destinationName = null,
+                        isFavorite = true,
+                        onFavoriteClick = { onFavoriteClick(favorite) }
+                    )
+                }
             }
         }
     }
