@@ -1,3 +1,12 @@
 <resources>
     <string name="app_name">FlightSearch</string>
+    <string name="search_hint">Ingresa un aeropuerto o código IATA</string>
+    <string name="clear_search">Borrar búsqueda</string>
+    <string name="flights_from">Vuelos desde %1$s</string>
+    <string name="depart">SALIDA</string>
+    <string name="arrive">LLEGADA</string>
+    <string name="add_favorite">Agregar a favoritos</string>
+    <string name="remove_favorite">Quitar de favoritos</string>
+    <string name="favorite_routes">Rutas favoritas</string>
+    <string name="no_favorites">Aún no tienes rutas favoritas. Busca un aeropuerto y toca la estrella para guardar una.</string>
 </resources>
